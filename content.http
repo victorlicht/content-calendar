@@ -1,0 +1,21 @@
+### Find All Content
+GET http://localhost:8080/api/content
+
+### Find Content by Id
+@id = 2
+GET http://localhost:8080/api/content/{{id}}
+
+### Create New Content
+POST http://localhost:8080/api/content
+Content-Type: application/json
+
+{
+  "id": 3,
+  "Title": "Example 03",
+  "description": "Example 3",
+  "status": "IDEA",
+  "contentType": "ARTICLE",
+  "createdAt": "2025-03-22T08:31:54.772736071",
+  "updatedAt": null,
+  "url": null
+}
