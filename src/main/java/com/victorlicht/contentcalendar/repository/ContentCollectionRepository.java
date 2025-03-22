@@ -40,6 +40,11 @@ public class ContentCollectionRepository {
     }
 
     public void save(Content content) {
+        contentList.removeIf(c -> c.id().equals(content.id()));
         contentList.add(content);
+    }
+
+    public boolean existsById(Integer id) {
+        return contentList.stream().filter(content -> content.id().equals(id)).count() == 1;
     }
 }
