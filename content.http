@@ -10,7 +10,7 @@ POST http://localhost:8080/api/content
 Content-Type: application/json
 
 {
-  "id": 3,
+  "id": 1,
   "Title": "Example 03",
   "description": "Example 3",
   "status": "IDEA",
@@ -34,3 +34,6 @@ Content-Type: application/json
   "updatedAt": null,
   "url": null
 }
+
+### Delete Content
+DELETE http://localhost:8080/api/content/{{id}}

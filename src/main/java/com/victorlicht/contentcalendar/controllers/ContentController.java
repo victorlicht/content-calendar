@@ -6,10 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/content")
@@ -37,11 +34,21 @@ public class ContentController {
         repository.save(content);
     }
 
+    @ResponseStatus(HttpStatus.ACCEPTED)
     @PutMapping("/{id}")
     public void update(@RequestBody Content content, @PathVariable Integer id) {
-        if (!repository.existsById(id)) {
+        if (repository.notExistsById(id)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Content not found");
         }
         repository.save(content);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Integer id) {
+        if (repository.notExistsById(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Content not found");
+        }
+        repository.delete(id);
     }
 }
